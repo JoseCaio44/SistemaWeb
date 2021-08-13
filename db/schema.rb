@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_183509) do
+ActiveRecord::Schema.define(version: 2021_08_13_205922) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nome"
@@ -37,12 +37,19 @@ ActiveRecord::Schema.define(version: 2021_08_13_183509) do
     t.string "cnpj"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "endereco_id", null: false
+    t.index ["endereco_id"], name: "index_fornecedors_on_endereco_id"
   end
 
   create_table "hardwares", force: :cascade do |t|
     t.string "metodo_montagem"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "fornecedor_id", null: false
+    t.string "nome"
+    t.string "descricao"
+    t.string "preco"
+    t.index ["fornecedor_id"], name: "index_hardwares_on_fornecedor_id"
   end
 
   create_table "item_pedidos", force: :cascade do |t|
@@ -59,14 +66,10 @@ ActiveRecord::Schema.define(version: 2021_08_13_183509) do
     t.string "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "produtos", force: :cascade do |t|
-    t.string "nome"
-    t.string "descricao"
-    t.float "preco"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "endereco_id", null: false
+    t.integer "cliente_id", null: false
+    t.index ["cliente_id"], name: "index_pedidos_on_cliente_id"
+    t.index ["endereco_id"], name: "index_pedidos_on_endereco_id"
   end
 
   create_table "softwares", force: :cascade do |t|
@@ -75,6 +78,11 @@ ActiveRecord::Schema.define(version: 2021_08_13_183509) do
     t.string "tipo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "fornecedor_id", null: false
+    t.string "nome"
+    t.string "descricao"
+    t.string "preco"
+    t.index ["fornecedor_id"], name: "index_softwares_on_fornecedor_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -85,6 +93,11 @@ ActiveRecord::Schema.define(version: 2021_08_13_183509) do
   end
 
   add_foreign_key "clientes", "enderecos"
+  add_foreign_key "fornecedors", "enderecos"
+  add_foreign_key "hardwares", "fornecedors"
   add_foreign_key "item_pedidos", "pedidos"
   add_foreign_key "item_pedidos", "produtos"
+  add_foreign_key "pedidos", "clientes"
+  add_foreign_key "pedidos", "enderecos"
+  add_foreign_key "softwares", "fornecedors"
 end
