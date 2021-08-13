@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :enderecos
   resources :usuarios
   resources :item_pedidos
   resources :fornecedors
@@ -6,7 +7,6 @@ Rails.application.routes.draw do
   resources :hardwares
   resources :produtos
   resources :pedidos
-  resources :enderecos
   resources :clientes
 
   get 'endereco/:id' => "enderecos#show"

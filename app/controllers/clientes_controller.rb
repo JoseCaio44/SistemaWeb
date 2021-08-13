@@ -1,5 +1,6 @@
 class ClientesController < ApplicationController
   before_action :set_cliente, only: %i[ show edit update destroy ]
+  protect_from_forgery
 
   # GET /clientes or /clientes.json
   def index
@@ -64,6 +65,6 @@ class ClientesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cliente_params
-      params.require(:cliente).permit(:nome, :rg, :celular)
+      params.require(:cliente).permit(:nome, :rg, :celular, :endereco_id)
     end
 end
