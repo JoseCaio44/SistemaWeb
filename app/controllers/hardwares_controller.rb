@@ -4,6 +4,7 @@ class HardwaresController < ApplicationController
   # GET /hardwares or /hardwares.json
   def index
     @hardwares = Hardware.all
+    @fornecedors = Fornecedor.all
   end
 
   # GET /hardwares/1 or /hardwares/1.json

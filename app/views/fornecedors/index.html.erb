@@ -52,6 +52,15 @@
             <input type="text" class="form-control" id="inputCnpj">
         </div>
 
+        <div class="form-group">
+        <label for="sel1">Endereço</label>
+        <select class="form-control" name="cliente[endereco_id]">
+        <% @enderecos.each do |endereco| %>
+          <option value="<%=endereco.id%>"> <%=endereco.complemento%> </option>
+        <%end %>
+        </select>
+      </div>
+      
         <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
         <button type="menu" class="btn btn-secondary btn-lg">Voltar</button>
   

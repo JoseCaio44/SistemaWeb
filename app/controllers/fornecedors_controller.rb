@@ -4,6 +4,7 @@ class FornecedorsController < ApplicationController
   # GET /fornecedors or /fornecedors.json
   def index
     @fornecedors = Fornecedor.all
+    @enderecos = Endereco.all
   end
 
   # GET /fornecedors/1 or /fornecedors/1.json

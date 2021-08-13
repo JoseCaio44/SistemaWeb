@@ -4,6 +4,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares or /softwares.json
   def index
     @softwares = Software.all
+    @fornecedors = Fornecedor.all
   end
 
   # GET /softwares/1 or /softwares/1.json

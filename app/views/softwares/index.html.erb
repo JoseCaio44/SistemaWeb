@@ -74,7 +74,16 @@
             <label for="inputTipo">Tipo</label>
             <input type="text" class="form-control" id="inputTipo">
         </div>
-        
+
+        <div class="form-group">
+        <label for="sel1">Fornecedor</label>
+        <select class="form-control" name="cliente[endereco_id]">
+        <% @fornecedors.each do |fornecedor| %>
+          <option value="<%=fornecedor.id%>"> <%=fornecedor.nome%> </option>
+        <%end %>
+        </select>
+      </div>
+      
         <div class="form-group">
           <label for="inputDescricao">Descrição</label>
           <textarea class="form-control" id="inputDescricao" rows="3"></textarea>
