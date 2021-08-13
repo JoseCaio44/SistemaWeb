@@ -5,6 +5,7 @@ class ClientesController < ApplicationController
   # GET /clientes or /clientes.json
   def index
     @clientes = Cliente.all
+    @enderecos = Endereco.all
   end
 
   # GET /clientes/1 or /clientes/1.json

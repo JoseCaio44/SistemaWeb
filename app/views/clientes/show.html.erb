@@ -17,7 +17,7 @@
 
 <p>
   <strong>Endereço:</strong>
-  <%= @cliente.endereco_id %>
+  <%=Endereco.find(@cliente.id).complemento%>
 </p>
 
 

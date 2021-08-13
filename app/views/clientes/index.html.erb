@@ -28,11 +28,10 @@
 
       <div class="form-group">
         <label for="sel1">Endereço</label>
-        <select class="form-control selectpicker" data-live-search="true" name="cliente[endereco_id]">
-          <option value="1">Rua gosta</option>
-          <option value="2">Rua não gosta</option>
-          <option value="3">Rua acha bom</option>
-          <option value="4">Rua não acha bom</option>
+        <select class="form-control" name="cliente[endereco_id]">
+        <% @enderecos.each do |endereco| %>
+          <option value="<%=endereco.id%>"> <%=endereco.complemento%> </option>
+        <%end %>
         </select>
       </div>
 
@@ -42,35 +41,3 @@
   </div> 
  </body>
 </html>
-
-<p id="notice"><%= notice %></p>
-
-<h1>Clientes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Rg</th>
-      <th>Celular</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @clientes.each do |cliente| %>
-      <tr>
-        <td><%= cliente.nome %></td>
-        <td><%= cliente.rg %></td>
-        <td><%= cliente.celular %></td>
-        <td><%= link_to 'Show', cliente %></td>
-        <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
-        <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Cliente', new_cliente_path %>
