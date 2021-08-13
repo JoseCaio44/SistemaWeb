@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_024221) do
+ActiveRecord::Schema.define(version: 2021_08_13_030804) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nome"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2021_08_05_024221) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "item_pedidos", force: :cascade do |t|
+    t.integer "pedido_id", null: false
+    t.integer "produto_id", null: false
+    t.string "quantidade"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pedido_id"], name: "index_item_pedidos_on_pedido_id"
+    t.index ["produto_id"], name: "index_item_pedidos_on_produto_id"
+  end
+
   create_table "pedidos", force: :cascade do |t|
     t.string "data"
     t.datetime "created_at", precision: 6, null: false
@@ -65,4 +75,13 @@ ActiveRecord::Schema.define(version: 2021_08_05_024221) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "usuarios", force: :cascade do |t|
+    t.string "usuario"
+    t.string "senha"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "item_pedidos", "pedidos"
+  add_foreign_key "item_pedidos", "produtos"
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :usuarios
+  resources :item_pedidos
   resources :fornecedors
   resources :softwares
   resources :hardwares
@@ -6,5 +8,7 @@ Rails.application.routes.draw do
   resources :pedidos
   resources :enderecos
   resources :clientes
+
+  get 'endereco/:id' => "enderecos#show"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
