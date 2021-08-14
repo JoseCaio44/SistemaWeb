@@ -23,11 +23,18 @@ class SoftwaresController < ApplicationController
 
   # POST /softwares or /softwares.json
   def create
-    @software = Software.new(software_params)
+    @parametros = (software_params)
+
+    @produto = Produto.new(nome: @parametros["nome"], preco: @parametros["preco"],
+       descricao: @parametros["descricao"], fornecedor_id: @parametros["fornecedor_id"])
+    @produto.save
+
+    @software = Software.new(versao:@parametros["versao"], linguagem: @parametros["linguagem"],
+      tipo: @parametros["tipo"], produto_id: @produto.id)
 
     respond_to do |format|
       if @software.save
-        format.html { redirect_to @software, notice: "Software was successfully created." }
+        format.html { redirect_to @software, notice: "Hardware was successfully created." }
         format.json { render :show, status: :created, location: @software }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +47,7 @@ class SoftwaresController < ApplicationController
   def update
     respond_to do |format|
       if @software.update(software_params)
-        format.html { redirect_to @software, notice: "Software was successfully updated." }
+        format.html { redirect_to @software, notice: "Hardware was successfully updated." }
         format.json { render :show, status: :ok, location: @software }
       else
         format.html { render :edit, status: :unprocessable_entity }

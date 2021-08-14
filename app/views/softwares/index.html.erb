@@ -42,7 +42,7 @@
 
 <%= link_to 'New Software', new_software_path %>
 
-     <form action="/hardwares" method="post">
+     <form action="/softwares" method="post">
         <h1>Cadastrar Software</h1>
         <br>
 
@@ -54,11 +54,6 @@
         <div class="form-group">
             <label for="inputPreco">Preço</label>
             <input type="number" class="form-control" id="inputPreco" name="software[preco]">
-        </div>
-
-        <div class="form-group">
-          <label for="inputQuantidade">Quantidade</label>
-          <input type="number" class="form-control" id="inputQuantidade" name="software[quantidade]">
         </div>
 
         <div class="form-group">
@@ -90,9 +85,8 @@
           <textarea class="form-control" id="inputDescricao" rows="3" name="software[descricao]"></textarea>
         </div>
 
+        <a href="/"><button type="menu" class="btn btn-secondary btn-lg">Voltar</button></a>
         <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
-        <button type="menu" class="btn btn-secondary btn-lg">Voltar</button>
-
     </div>
 
 </form>

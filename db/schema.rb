@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_205922) do
+ActiveRecord::Schema.define(version: 2021_08_14_034527) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nome"
@@ -45,11 +45,8 @@ ActiveRecord::Schema.define(version: 2021_08_13_205922) do
     t.string "metodo_montagem"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "fornecedor_id", null: false
-    t.string "nome"
-    t.string "descricao"
-    t.string "preco"
-    t.index ["fornecedor_id"], name: "index_hardwares_on_fornecedor_id"
+    t.integer "produto_id", null: false
+    t.index ["produto_id"], name: "index_hardwares_on_produto_id"
   end
 
   create_table "item_pedidos", force: :cascade do |t|
@@ -72,17 +69,24 @@ ActiveRecord::Schema.define(version: 2021_08_13_205922) do
     t.index ["endereco_id"], name: "index_pedidos_on_endereco_id"
   end
 
+  create_table "produtos", force: :cascade do |t|
+    t.string "nome"
+    t.string "descricao"
+    t.string "preco"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "fornecedor_id", null: false
+    t.index ["fornecedor_id"], name: "index_produtos_on_fornecedor_id"
+  end
+
   create_table "softwares", force: :cascade do |t|
     t.string "versao"
     t.string "linguagem"
     t.string "tipo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "fornecedor_id", null: false
-    t.string "nome"
-    t.string "descricao"
-    t.string "preco"
-    t.index ["fornecedor_id"], name: "index_softwares_on_fornecedor_id"
+    t.integer "produto_id", null: false
+    t.index ["produto_id"], name: "index_softwares_on_produto_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -94,10 +98,11 @@ ActiveRecord::Schema.define(version: 2021_08_13_205922) do
 
   add_foreign_key "clientes", "enderecos"
   add_foreign_key "fornecedors", "enderecos"
-  add_foreign_key "hardwares", "fornecedors"
+  add_foreign_key "hardwares", "produtos"
   add_foreign_key "item_pedidos", "pedidos"
   add_foreign_key "item_pedidos", "produtos"
   add_foreign_key "pedidos", "clientes"
   add_foreign_key "pedidos", "enderecos"
-  add_foreign_key "softwares", "fornecedors"
+  add_foreign_key "produtos", "fornecedors"
+  add_foreign_key "softwares", "produtos"
 end

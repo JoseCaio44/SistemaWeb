@@ -2,6 +2,7 @@ class HardwaresController < ApplicationController
   before_action :set_hardware, only: %i[ show edit update destroy ]
   protect_from_forgery
 
+
   # GET /hardwares or /hardwares.json
   def index
     @hardwares = Hardware.all
@@ -23,7 +24,14 @@ class HardwaresController < ApplicationController
 
   # POST /hardwares or /hardwares.json
   def create
-    @hardware = Hardware.new(hardware_params)
+    @parametros = (hardware_params)
+
+    @produto = Produto.new(nome: @parametros["nome"], preco: @parametros["preco"],
+       descricao: @parametros["descricao"], fornecedor_id: @parametros["fornecedor_id"])
+    @produto.save
+
+    @hardware = Hardware.new(metodo_montagem:@parametros["metodo_montagem"],
+       produto_id: @produto.id)
 
     respond_to do |format|
       if @hardware.save
@@ -66,6 +74,6 @@ class HardwaresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def hardware_params
-      params.require(:hardware).permit(:metodo_montagem, :fornecedor_id, :nome, :descricao, :preco)
+      params.require(:hardware).permit(:metodo_montagem, :nome, :preco, :fornecedor_id, :descricao)
     end
 end

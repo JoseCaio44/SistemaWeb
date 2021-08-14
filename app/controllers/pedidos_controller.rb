@@ -5,6 +5,9 @@ class PedidosController < ApplicationController
   # GET /pedidos or /pedidos.json
   def index
     @pedidos = Pedido.all
+    @enderecos = Endereco.all
+    @clientes = Cliente.all
+    @produtos = Produto.all
   end
 
   # GET /pedidos/1 or /pedidos/1.json
@@ -22,8 +25,11 @@ class PedidosController < ApplicationController
 
   # POST /pedidos or /pedidos.json
   def create
-    @pedido = Pedido.new(pedido_params)
-
+    @pedido = Pedido.new(produto_params)
+    @pedido.save
+    @itemPedido = (produto_params)
+    puts("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    puts(@itemPedido)
     respond_to do |format|
       if @pedido.save
         format.html { redirect_to @pedido, notice: "Pedido was successfully created." }
@@ -66,5 +72,8 @@ class PedidosController < ApplicationController
     # Only allow a list of trusted parameters through.
     def pedido_params
       params.require(:pedido).permit(:data, :endereco_id, :cliente_id)
+    end
+    def produto_params
+      params.require(:produto).permit(:produto_id, :quantidade)
     end
 end
