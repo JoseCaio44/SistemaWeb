@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :pedidos
   resources :clientes
 
-  get '/' => redirect('/views/tela_inicial.html')
+  get '/', to: 'tela_inicials#index'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
