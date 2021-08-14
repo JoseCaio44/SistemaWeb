@@ -1,5 +1,6 @@
 class ItemPedidosController < ApplicationController
   before_action :set_item_pedido, only: %i[ show edit update destroy ]
+  protect_from_forgery
 
   # GET /item_pedidos or /item_pedidos.json
   def index

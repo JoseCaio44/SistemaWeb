@@ -1,5 +1,6 @@
 class SoftwaresController < ApplicationController
   before_action :set_software, only: %i[ show edit update destroy ]
+  protect_from_forgery
 
   # GET /softwares or /softwares.json
   def index
@@ -65,6 +66,6 @@ class SoftwaresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def software_params
-      params.require(:software).permit(:versao, :linguagem, :tipo)
+      params.require(:software).permit(:versao, :linguagem, :tipo, :fornecedor_id, :nome, :descricao, :preco)
     end
 end

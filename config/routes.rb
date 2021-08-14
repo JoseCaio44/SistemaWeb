@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   resources :enderecos
-  resources :usuarios
   resources :item_pedidos
   resources :fornecedors
   resources :softwares
   resources :hardwares
-  resources :produtos
   resources :pedidos
   resources :clientes
 

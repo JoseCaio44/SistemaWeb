@@ -1,5 +1,6 @@
 class HardwaresController < ApplicationController
   before_action :set_hardware, only: %i[ show edit update destroy ]
+  protect_from_forgery
 
   # GET /hardwares or /hardwares.json
   def index
@@ -65,6 +66,6 @@ class HardwaresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def hardware_params
-      params.require(:hardware).permit(:metodo_montagem)
+      params.require(:hardware).permit(:metodo_montagem, :fornecedor_id, :nome, :descricao, :preco)
     end
 end

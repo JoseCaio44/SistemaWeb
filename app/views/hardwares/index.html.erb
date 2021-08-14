@@ -46,27 +46,27 @@
 
         <div class="form-group">
             <label for="inputNome">Nome</label>
-            <input type="text" class="form-control" id="inputNome" name="hardwares[nome]">
+            <input type="text" class="form-control" id="inputNome" name="hardware[nome]">
         </div>
 
         <div class="form-group">
             <label for="inputPreco">Preço</label>
-            <input type="number" class="form-control" id="inputPreco" name="hardwares[preco]">
+            <input type="number" class="form-control" id="inputPreco" name="hardware[preco]">
         </div>
 
         <div class="form-group">
           <label for="inputQuantidade">Quantidade</label>
-          <input type="number" class="form-control" id="inputQuantidade" name="hardwares[quantidade]">
+          <input type="number" class="form-control" id="inputQuantidade" name="hardware[quantidade]">
         </div>
 
         <div class="form-group">
           <label for="inputMontagem">Metodo de Montagem</label>
-          <input type="text" class="form-control" id="inputMontagem" name="hardwares[montagem]">
+          <input type="text" class="form-control" id="inputMontagem" name="hardware[montagem]">
         </div>
 
         <div class="form-group">
         <label for="sel1">Fornecedor</label>
-        <select class="form-control" name="cliente[endereco_id]">
+        <select class="form-control" name="hardware[fornecedor_id]">
         <% @fornecedors.each do |fornecedor| %>
           <option value="<%=fornecedor.id%>"> <%=fornecedor.nome%> </option>
         <%end %>
@@ -75,7 +75,7 @@
 
         <div class="form-group">
           <label for="inputDescricao">Descrição</label>
-          <textarea class="form-control" id="inputDescricao" name="hardwares[descricao]" rows="3"></textarea>
+          <textarea class="form-control" id="inputDescricao" name="hardware[descricao]" rows="3"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary btn-lg">Enviar</button>

@@ -1,5 +1,6 @@
 class FornecedorsController < ApplicationController
   before_action :set_fornecedor, only: %i[ show edit update destroy ]
+  protect_from_forgery
 
   # GET /fornecedors or /fornecedors.json
   def index
@@ -65,6 +66,6 @@ class FornecedorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fornecedor_params
-      params.require(:fornecedor).permit(:nome, :cnpj)
+      params.require(:fornecedor).permit(:nome, :cnpj, :endereco_id)
     end
 end

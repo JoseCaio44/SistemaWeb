@@ -1,5 +1,6 @@
 class PedidosController < ApplicationController
   before_action :set_pedido, only: %i[ show edit update destroy ]
+  protect_from_forgery
 
   # GET /pedidos or /pedidos.json
   def index
@@ -64,6 +65,6 @@ class PedidosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pedido_params
-      params.require(:pedido).permit(:data)
+      params.require(:pedido).permit(:data, :endereco_id, :cliente_id)
     end
 end
