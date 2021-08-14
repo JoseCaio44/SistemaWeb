@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :clientes
 
   get 'endereco/:id' => "enderecos#show"
+  get '/' => redirect('/views/tela_inicial.html')
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
